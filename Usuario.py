@@ -50,12 +50,18 @@ class Usuario(Registrador):
 
 
 if __name__ == "__main__":
+    
+    ## Espera unos minutos
+    time.sleep(3)
+    ## Termina la espera
+    
+
     cont=0    
     objeto1 =Pc("chrome")
     Sitio1=PaginaWeb("https://siau.unillanos.edu.co:8443/ORION/Login")   
-    s=input("ingresa tu usuario de siau")
-    m=input("ingresa tu contraseña")
-    link=input("ingresa tu link de comedor siau ")
+    s="deivid.hernandez"
+    m="alex8604ALEX"
+    link="https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062595"
     usiario1=Usuario(s,m)
 
     Sitio2= PaginaWeb(link)
@@ -64,47 +70,64 @@ if __name__ == "__main__":
     abierto_chrome1=False
     abierto_pagina1=False
     credenciales_entradas=False
-
-    while True:
-        if abierto_chrome1 == False:
-            abierto_chrome1=objeto1.abre_apliacion()
-        else:
-            if abierto_pagina1 == False:
-                abierto_pagina1=Sitio1.entra_pagina(abierto_chrome1)
+    while cont<=1:
+        if cont ==1:
+            link="https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062585"
+            Sitio2=PaginaWeb(link)
+        while True:
+            if abierto_chrome1 == False:
+                abierto_chrome1=objeto1.abre_apliacion()
             else:
-                if credenciales_entradas==False:
-                    credenciales_entradas=usiario1.EntraCredenciales()
-                    Registrador.busca_con_comandos("consultar")
-                    registro2=Registrador(".\stest_siau_inicio.png")
-                    try:
-                        x,y = registro2.busca_boton(registro2.imga)
-                    except TypeError:
-                        with pg.hold("ctrl"):
-                            pg.press("r")
-                        Registrador.busca_con_comandos("rol")
-                        try:
-                            registro3=Registrador(".\stest_siau_pag_principal.png")
-                        except TypeError:
-                            print("hubo un error")
-                            abierto_chrome1, abierto_pagina1,credenciales_entradas= False,False,False
-                        ##abierto_chrome1 , abierto_pagina1 ,credenciales_entradas =usiario1.test_credenciales()
-                    Sitio1.cerrar_pagina()            
+                if abierto_pagina1 == False:
+                    abierto_pagina1=Sitio1.entra_pagina(abierto_chrome1)
                 else:
-                    chrome2=objeto1.abre_apliacion()
-                    abierto_pagina2=Sitio2.entra_pagina(abierto_chrome1)
-                    try:
-                        Registrador.busca_con_comandos("registrar")
-                        registro1=Registrador(".\sboton1.png")
-                        x, y =registro1.busca_boton(registro1.imga)
-                        pg.moveTo(x,y,2)
-                        pg.click(x,y)
-                        time.sleep(10)
-                        Sitio2.cerrar_pagina()
-                        break 
-                    except TypeError:
-                        print("no se registro el almuerzo")
-
-
+                    if credenciales_entradas==False:
+                        credenciales_entradas=usiario1.EntraCredenciales()
+                        Registrador.busca_con_comandos("consultar")
+                        registro2=Registrador(".\stest_siau_inicio.png")
+                        try:
+                            x,y = registro2.busca_boton(registro2.imga)
+                        except TypeError:
+                            with pg.hold("ctrl"):
+                                pg.press("r")
+                            Registrador.busca_con_comandos("rol")
+                            try:
+                                registro3=Registrador(".\stest_siau_pag_principal.png")
+                            except TypeError:
+                                print("hubo un error")
+                                abierto_chrome1, abierto_pagina1,credenciales_entradas= False,False,False
+                            ##abierto_chrome1 , abierto_pagina1 ,credenciales_entradas =usiario1.test_credenciales()
+                        Sitio1.cerrar_pagina()            
+                    else:
+                        chrome2=objeto1.abre_apliacion()
+                        abierto_pagina2=Sitio2.entra_pagina(abierto_chrome1)
+                        while True:
+                            try:
+                                Registrador.busca_con_comandos("registrar")
+                                registro1=Registrador(".\sboton1.png")
+                                x, y =registro1.busca_boton(registro1.imga)
+                                time.sleep("2")
+                                with pg.hold("ctrl"):
+                                    pg.press("r")
+                                time.sleep("2")
+                                Registrador.busca_con_comandos("exitoso")
+                                time.sleep("2")
+                                registro2=Registrador(".\Exitoso.png") 
+                                z, w = registro2.busca_boton(registro2.imga)
+                                pg.moveTo(x,y,1)
+                                pg.click(x,y)
+                                time.sleep(5)
+                                Sitio2.cerrar_pagina()
+                                break 
+                            except TypeError:
+                                print("no se registro el almuerzo")
+                                time.sleep(2)
+                                with pg.hold("ctrl"):
+                                    pg.press("r")       
+            cont=cont+1
+    with pg.hold("win")
+        pg.press("x")
+    
 
 
 

@@ -10,10 +10,11 @@ class Pc:
         time.sleep(1)
         pg.write(self.aplicacion)
         pg.press("enter")
-        time.sleep(3)
+        time.sleep(5)
         pagina_verdadera = pg.locateCenterOnScreen(".\pagina_VERDADERA.png")
         print(f'pagina_verdadera = {pagina_verdadera}')
-        time.sleep(1)           
+        time.sleep(5)      
+        
         
         if pagina_verdadera == None:
             with pg.hold("ctrl"):
@@ -31,7 +32,7 @@ class Pc:
         else  :
             print(f'se ha ingresado a {self.aplicacion} sin forzar')    
             print("¡¡Proceso exitoso¡¡")
-            time.sleep(3)
+            time.sleep(5)
             return True
 
 
