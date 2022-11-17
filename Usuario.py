@@ -25,29 +25,29 @@ class Usuario(Registrador):
     
 
     def test_pagina(self):
-        Registrador.busca_con_comandos("rol")
-        dentro_siau=Registrador.busca_boton(".\stest_siau_pag_principal.png")
-        if afuera_siau_x ==None and afuera_siau_y == None:
-            if dentro_siau==None:
-                return False , False , False
-            else:
-                return True , True , True
-        else:
-            with pg.hold("ctrl"):
-                pg.press("r")
-            return True , True ,False
-
+        pass
+     ##   Registrador.busca_con_comandos("rol")
+      ##  dentro_siau=Registrador.busca_boton(".\stest_siau_pag_principal.png")
+        ##if afuera_siau_x ==None and afuera_siau_y == None:
+        ##    if dentro_siau==None:
+         ##       return False , False , False
+         ##   else:
+         ##       return True , True , True
+      ##  else:
+       ##     with pg.hold("ctrl"):
+        ##        pg.press("r")
+        ##    return True , True ,False
 
     def EntraCredenciales(self):
         credenciales=Usuario.empaqueta(self)
         for credenciales in credenciales:
             pg.write(credenciales)
+            time.sleep(1)
             pg.press("tab")
         pg.press("enter")
         print("se ingresaron las credenciales ")
         time.sleep(3)
         return True
-
 
 if __name__ == "__main__":
     
@@ -55,12 +55,11 @@ if __name__ == "__main__":
     time.sleep(3)
     ## Termina la espera
     
-
     cont=0    
     objeto1 =Pc("chrome")
     Sitio1=PaginaWeb("https://siau.unillanos.edu.co:8443/ORION/Login")   
     s="deivid.hernandez"
-    m="alex8604ALEX"
+    m="alex8604ALEX;:_"
     link="https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062595"
     usiario1=Usuario(s,m)
 
@@ -73,7 +72,10 @@ if __name__ == "__main__":
     while cont<=1:
         if cont ==1:
             link="https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062585"
-            Sitio2=PaginaWeb(link)
+            Sitio2.SitioWeb=link
+        else:
+            cont = cont+1
+
         while True:
             if abierto_chrome1 == False:
                 abierto_chrome1=objeto1.abre_apliacion()
@@ -123,11 +125,8 @@ if __name__ == "__main__":
                                 print("no se registro el almuerzo")
                                 time.sleep(2)
                                 with pg.hold("ctrl"):
-                                    pg.press("r")       
-            cont=cont+1
-    with pg.hold("win")
-        pg.press("x")
-    
+                                    pg.press("r")      
+    Pc.apagar_Pc() 
 
 
 

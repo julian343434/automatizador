@@ -5,16 +5,32 @@ class Pc:
     def __init__(self,aplicacion):
         self.aplicacion =aplicacion
 
+    @classmethod
+    def apagar_Pc(cls):
+        time.sleep(5)
+        with pg.hold("win"):
+            pg.press("x")
+        pg.press("up")
+        pg.press("up")
+        pg.press("right") 
+        pg.press("down")
+        pg.press("down")
+        time.sleep(2)
+        pg.press("enter")
+
+
     def abre_apliacion(self):
         pg.press('win')
         time.sleep(1)
         pg.write(self.aplicacion)
         pg.press("enter")
         time.sleep(5)
-        pagina_verdadera = pg.locateCenterOnScreen(".\pagina_VERDADERA.png")
-        print(f'pagina_verdadera = {pagina_verdadera}')
-        time.sleep(5)      
-        
+        try:
+            pagina_verdadera = pg.locateCenterOnScreen(".\pagina_VERDADERA.png" , confidence=0.9)
+            print(f'pagina_verdadera = {pagina_verdadera}')
+            time.sleep(5)      
+        except AttributeError:
+            pagina_verdadera=None
         
         if pagina_verdadera == None:
             with pg.hold("ctrl"):
