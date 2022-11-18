@@ -18,20 +18,21 @@ class Pc:
         time.sleep(2)
         pg.press("enter")
 
-
-    def abre_apliacion(self):
+    def abre_apliacion(self,image):
         pg.press('win')
         time.sleep(1)
         pg.write(self.aplicacion)
         pg.press("enter")
         time.sleep(5)
+        palabra="buscar en google"
         try:
-            pagina_verdadera = pg.locateCenterOnScreen(".\pagina_VERDADERA.png" , confidence=0.9)
-            print(f'pagina_verdadera = {pagina_verdadera}')
-            time.sleep(5)      
-        except AttributeError:
-            pagina_verdadera=None
-        
+            Cord_boton=pg.locateCenterOnScreen(image)
+            print(Cord_boton)
+        except Exception :
+            pagina_verdadera= None
+        with pg.hold("ctrl") :
+            pg.press("f")
+        pg.write(palabra)        
         if pagina_verdadera == None:
             with pg.hold("ctrl"):
                 pg.press("t")
@@ -54,4 +55,4 @@ class Pc:
 
 if __name__ == '__main__':
     objeto1= Pc("chrome")
-    objeto1.abre_apliacion()
+    objeto1.abre_apliacion(".\google_inicio.png")

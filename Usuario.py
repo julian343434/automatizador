@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
         while True:
             if abierto_chrome1 == False:
-                abierto_chrome1=objeto1.abre_apliacion()
+                abierto_chrome1=objeto1.abre_apliacion(".\google_abierto.png")
             else:
                 if abierto_pagina1 == False:
                     abierto_pagina1=Sitio1.entra_pagina(abierto_chrome1)
@@ -101,13 +101,16 @@ if __name__ == "__main__":
                             ##abierto_chrome1 , abierto_pagina1 ,credenciales_entradas =usiario1.test_credenciales()
                         Sitio1.cerrar_pagina()            
                     else:
-                        chrome2=objeto1.abre_apliacion()
+                        chrome2=objeto1.abre_apliacion(".\google_abierto.png")
                         abierto_pagina2=Sitio2.entra_pagina(abierto_chrome1)
                         while True:
                             try:
                                 Registrador.busca_con_comandos("registrar")
                                 registro1=Registrador(".\sboton1.png")
                                 x, y =registro1.busca_boton(registro1.imga)
+                                print(f'x,y = {x} , {y}')
+                                pg.moveTo(x,y)
+                                pg.click()
                                 time.sleep("2")
                                 with pg.hold("ctrl"):
                                     pg.press("r")
@@ -116,8 +119,6 @@ if __name__ == "__main__":
                                 time.sleep("2")
                                 registro2=Registrador(".\Exitoso.png") 
                                 z, w = registro2.busca_boton(registro2.imga)
-                                pg.moveTo(x,y,1)
-                                pg.click(x,y)
                                 time.sleep(5)
                                 Sitio2.cerrar_pagina()
                                 break 

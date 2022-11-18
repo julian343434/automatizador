@@ -20,7 +20,7 @@ class Registrador:
 
 if __name__ == "__main__":
     objeto1= Pc("chrome")
-    verificador =objeto1.abre_apliacion()
+    verificador =objeto1.abre_apliacion(".\google_abierto.png")
     time.sleep(2)
     Sitio1=PaginaWeb("https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062595")
     Sitio1.entra_pagina(verificador)
@@ -28,6 +28,8 @@ if __name__ == "__main__":
 
     registro1=Registrador(".\sboton1.png")
     print(f'{registro1.imga}')
-    x, y=registro1.busca_boton()
+    registro1.busca_con_comandos("registrar")
+    x, y=registro1.busca_boton(registro1.imga)
     print(f'busca_boton {x} , {y}')
+    pg.moveTo(x,y)
    ## pg.click(x,None)"
