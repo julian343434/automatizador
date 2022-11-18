@@ -52,7 +52,11 @@ class Usuario(Registrador):
 if __name__ == "__main__":
     
     ## Espera unos minutos
+<<<<<<< HEAD
     time.sleep(5)
+=======
+    time.sleep(300)
+>>>>>>> 4570115fe4ef0f58df690e6ca1b16a99db62cc90
     ## Termina la espera
     
     cont=0    
