@@ -1,0 +1,1 @@
+"C:/Users/La Economia/AppData/Local/Microsoft/WindowsApps/python3.10.exe" "C:\Users\La Economia\Documents\automatizador\Usuario.py"
