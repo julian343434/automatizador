@@ -3,7 +3,7 @@ import pyautogui as pg
 import time 
 from Pc import Pc
 from Registrador import Registrador
-
+import webbrowser as chrome
 class Usuario(Registrador):
     def __init__(self,NombreUsuario,Contrasena) -> None:
         self._NombreUsuario= NombreUsuario
@@ -50,29 +50,75 @@ class Usuario(Registrador):
         return True
 
 if __name__ == "__main__":
-    
     ## Espera unos minutos
-<<<<<<< HEAD
-    time.sleep(5)
-=======
     time.sleep(300)
->>>>>>> 4570115fe4ef0f58df690e6ca1b16a99db62cc90
     ## Termina la espera
     
-    cont=0    
-    objeto1 =Pc("chrome")
-    Sitio1=PaginaWeb("https://siau.unillanos.edu.co:8443/ORION/Login")   
-    s="deivid.hernandez"
-    m="alex8604ALEX;:_"
-    link="https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062595"
-    usiario1=Usuario(s,m)
+    ##instancias
+    objeto1= Pc("chrome")
+    objeto1.abre_apliacion(".\google_inicio.png")
+    ##
+    time.sleep(15)
 
-    Sitio2= PaginaWeb(link)
+    ## abre la pagina del almuerzo
+    chrome.open_new_tab("https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062595")
+    chrome.open_new_tab("https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062585")
+    ##links= ["https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062585","https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062595"]
 
+    ##variables
+    cont=0
+    ## 
 
-    abierto_chrome1=False
-    abierto_pagina1=False
-    credenciales_entradas=False
+    time.sleep(5)
+    ## autenticador de sitio
+    hola=None
+    while cont<2:
+        while True:
+            try:
+                time.sleep(1)
+                Registrador.busca_con_comandos("exitoso")
+                time.sleep(1)
+                registro2=Registrador(".\sboton1.png")
+                time.sleep(2) 
+                z, w = registro2.busca_boton(registro2.imga)
+                print(f' z = {z} w = {w}')
+                time.sleep(5)
+                print(f"se registro el almuerzo {cont+1}")
+                PaginaWeb.cerrar_pagina()
+                break 
+            except Exception:
+                try:
+                    print("no se registro el almuerzo")
+                    PaginaWeb.recargar_pagina()
+                    time.sleep(1)
+                    Registrador.busca_con_comandos("registrar")
+                    time.sleep(1)
+                    registro1=Registrador(".\sboton1.png")
+                    if  hola == None:
+                        hola =registro1.busca_boton(registro1.imga)
+                        time.sleep(2)
+                        x,y=hola
+                        time.sleep(1)
+                        print(f'x,y = {x} , {y}')
+                        pg.moveTo(x,y,1)
+                        pg.clic()
+                        time.sleep(1)
+                        PaginaWeb.recargar_pagina()
+                    else:
+                        time.sleep(1)
+                        pg.moveTo(x,y,1)
+                        pg.clic()
+                        time.sleep(1)
+                        pg.moveTo(100,100)
+                        time.sleep(1)
+                        PaginaWeb.recargar_pagina()     
+                except Exception:
+                    print("falla del sistema")
+        cont=1+cont
+        with pg.hold("ctrl"):
+            pg.press("tab")
+            pg.press("tab")
+"""
     while cont<=1:
         if cont ==1:
             link="https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062585"
@@ -108,31 +154,8 @@ if __name__ == "__main__":
                         chrome2=objeto1.abre_apliacion(".\google_abierto.png")
                         abierto_pagina2=Sitio2.entra_pagina(abierto_chrome1)
                         while True:
-                            try:
-                                Registrador.busca_con_comandos("registrar")
-                                registro1=Registrador(".\sboton1.png")
-                                x, y =registro1.busca_boton(registro1.imga)
-                                print(f'x,y = {x} , {y}')
-                                pg.moveTo(x,y)
-                                pg.click()
-                                time.sleep("2")
-                                with pg.hold("ctrl"):
-                                    pg.press("r")
-                                time.sleep("2")
-                                Registrador.busca_con_comandos("exitoso")
-                                time.sleep("2")
-                                registro2=Registrador(".\Exitoso.png") 
-                                z, w = registro2.busca_boton(registro2.imga)
-                                time.sleep(5)
-                                Sitio2.cerrar_pagina()
-                                break 
-                            except TypeError:
-                                print("no se registro el almuerzo")
-                                time.sleep(2)
-                                with pg.hold("ctrl"):
-                                    pg.press("r")      
     Pc.apagar_Pc() 
-
+"""
 
 
 

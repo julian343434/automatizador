@@ -1,6 +1,6 @@
 import pyautogui as pg
 import time
-
+import webbrowser
 class Pc:
     def __init__(self,aplicacion):
         self.aplicacion =aplicacion
@@ -54,5 +54,7 @@ class Pc:
 
 
 if __name__ == '__main__':
-    objeto1= Pc("chrome")
-    objeto1.abre_apliacion(".\google_inicio.png")
+
+    webbrowser.open_new_tab("https://actualizacion.unillanos.edu.co/comedor/asistencia.php?id=100062595")
+    ##objeto1= Pc("chrome")
+    ##objeto1.abre_apliacion(".\google_inicio.png")
