@@ -71,50 +71,46 @@ if __name__ == "__main__":
 
     time.sleep(5)
     ## autenticador de sitio
-    hola=None
     while cont<2:
         while True:
             try:
                 time.sleep(1)
-                Registrador.busca_con_comandos("ya tiene un registro")
-                time.sleep(1)
-                registro2=Registrador(".\sboton1.png")
-                time.sleep(2) 
-                z, w = registro2.busca_boton(registro2.imga)
-                print(f' z = {z} w = {w}')
-                time.sleep(5)
-                print(f"se registro el almuerzo {cont+1}")
-                PaginaWeb.cerrar_pagina()
-                break 
+                registro2=Registrador([".\sboton1.png",".\s2_0_registro_exitoso_1.png",".\s2_0_registro_exitoso_2.png","s2_0_registro_exitoso_3","s2_0_registro_exitoso_4","s2_0_registro_exito_5.png","s2_0_registro_exitoso_6.png"])
+                for intento in registro2.imga:
+                        Registrador.busca_con_comandos("no quedan cupos registrar")
+                        time.sleep(1)
+                        lista_intentos=registro1.busca_boton(intento)
+                        print(f'{lista_intentos}')
+                        if lista_intentos!=None:
+                            print("EXITO se registro el almuerzo intento")
+                            cont = 1+cont
+                            PaginaWeb.cerrar_pagina()
+                            break
+                        else:
+                            print("no se registro el almuerzo")
+                            x,y=lista_intentos
             except Exception:
                 try:
-                    print("no se registro el almuerzo")
                     PaginaWeb.recargar_pagina()
                     time.sleep(1)
-                    Registrador.busca_con_comandos("registrar")
+                    registro1=Registrador([".\sboton1.png",".\s2_0_boton_registrar1.png",".\s2_0_boton_registrar2.png",".\s2_0_boton_registrar3.png",".\s2_0_boton_registrar4.png",".\s2_0_boton_registrar5.png"])
+                    for intento in registro1.imga:
+                        Registrador.busca_con_comandos("registrar")
+                        time.sleep(1)
+                        lista_intentos=registro1.busca_boton(intento)
+                        print(f'{lista_intentos}')
+                        if lista_intentos!=None:
+                            x,y = lista_intentos
+                            break
                     time.sleep(1)
-                    registro1=Registrador(".\sboton1.png")
-                    if  hola == None:
-                        hola =registro1.busca_boton(registro1.imga)
-                        time.sleep(2)
-                        x,y=hola
-                        time.sleep(1)
-                        print(f'x,y = {x} , {y}')
-                        pg.moveTo(x,y,1)
-                        pg.clic()
-                        time.sleep(1)
-                        PaginaWeb.recargar_pagina()
-                    else:
-                        time.sleep(1)
-                        pg.moveTo(x,y,1)
-                        pg.clic()
-                        time.sleep(1)
-                        pg.moveTo(100,100)
-                        time.sleep(1)
-                        PaginaWeb.recargar_pagina()     
+                    print(f'x,y = {x} , {y}')
+                    pg.moveTo(x,y)
+                    time.sleep(1)
+                    pg.click(x,y)
+                    time.sleep(1)    
                 except Exception:
                     print("falla del sistema")
-        cont=1+cont
+        
         with pg.hold("ctrl"):
             pg.press("tab")
             pg.press("tab")
@@ -124,7 +120,7 @@ if __name__ == "__main__":
     PaginaWeb.cerrar_pagina()
     time.sleep(10)
 
-    Pc.apagar_Pc()
+    ##registrarPc.apagar_Pc()
 """
     while cont<=1:
         if cont ==1:

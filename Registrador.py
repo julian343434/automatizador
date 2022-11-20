@@ -8,6 +8,7 @@ class Registrador:
         self.imga= imga
         
     def busca_boton(self,image):
+        lista=[]
         Cord_boton=pg.locateCenterOnScreen(image)
         print(Cord_boton)
         return Cord_boton
@@ -26,10 +27,14 @@ if __name__ == "__main__":
     Sitio1.entra_pagina(verificador)
     time.sleep(2)
 
-    registro1=Registrador(".\sboton1.png")
-    print(f'{registro1.imga}')
-    registro1.busca_con_comandos("registrar")
-    x, y=registro1.busca_boton(registro1.imga)
+    registro1=Registrador([".\sboton1.png",".\s2_0_boton_registrar1.png",".\s2_0_boton_registrar2.png",".\s2_0_boton_registrar3.png",".\s2_0_boton_registrar4.png",".\s2_0_boton_registrar5.png"])
+    for intento in registro1.imga:
+        registro1.busca_con_comandos("registrar")
+        time.sleep(1)
+        lista_intentos=registro1.busca_boton(intento)
+        print(f'{lista_intentos}')
+        if lista_intentos!=None:
+            x,y = lista_intentos
+            break
     print(f'busca_boton {x} , {y}')
-    pg.moveTo(x,y)
-   ## pg.click(x,None)"
+    pg.click(x,y,1)
