@@ -86,9 +86,8 @@ if __name__ == "__main__":
                             cont = 1+cont
                             PaginaWeb.cerrar_pagina()
                             break
-                        else:
-                            print("no se registro el almuerzo")
-                            x,y=lista_intentos
+                print("no se registro el almuerzo")
+                x,y=lista_intentos
             except Exception:
                 try:
                     PaginaWeb.recargar_pagina()
