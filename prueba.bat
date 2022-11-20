@@ -1,1 +1,1 @@
-"C:/Users/La Economia/AppData/Local/Microsoft/WindowsApps/python3.10.exe" "C:\Users\La Economia\Documents\automatizador\Usuario.py"
+"C:\Users\La Economia\AppData\Local\Programs\Python\Python310\Lib\venv\scripts\nt\python.exe" "C:\Users\La Economia\Documents\automatizador\Usuario.py"

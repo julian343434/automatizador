@@ -51,7 +51,7 @@ class Usuario(Registrador):
 
 if __name__ == "__main__":
     ## Espera unos minutos
-    time.sleep(300)
+    time.sleep(3)
     ## Termina la espera
     
     ##instancias
@@ -118,6 +118,13 @@ if __name__ == "__main__":
         with pg.hold("ctrl"):
             pg.press("tab")
             pg.press("tab")
+    time.sleep(4)
+    PaginaWeb.cerrar_pagina()
+    time.sleep(10)
+    PaginaWeb.cerrar_pagina()
+    time.sleep(10)
+
+    Pc.apagar_Pc()
 """
     while cont<=1:
         if cont ==1:
@@ -153,8 +160,7 @@ if __name__ == "__main__":
                     else:
                         chrome2=objeto1.abre_apliacion(".\google_abierto.png")
                         abierto_pagina2=Sitio2.entra_pagina(abierto_chrome1)
-                        while True:
-    Pc.apagar_Pc() 
+                        while True: 
 """
 
 
