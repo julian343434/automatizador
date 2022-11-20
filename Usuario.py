@@ -51,7 +51,7 @@ class Usuario(Registrador):
 
 if __name__ == "__main__":
     ## Espera unos minutos
-    time.sleep(3)
+    time.sleep(5)
     ## Termina la espera
     
     ##instancias
@@ -76,7 +76,7 @@ if __name__ == "__main__":
         while True:
             try:
                 time.sleep(1)
-                Registrador.busca_con_comandos("exitoso")
+                Registrador.busca_con_comandos("ya tiene un registro")
                 time.sleep(1)
                 registro2=Registrador(".\sboton1.png")
                 time.sleep(2) 
