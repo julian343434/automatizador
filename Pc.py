@@ -18,6 +18,11 @@ class Pc:
         time.sleep(2)
         pg.press("enter")
 
+    @classmethod 
+    def screenshot(cls,x,y,ancho,alto):
+        imaagen=pg.screenshot(region=(1700,500,400,400))
+        return imagen
+
     def abre_apliacion(self,image):
         pg.press('win')
         time.sleep(1)

@@ -22,7 +22,13 @@ class Usuario(Registrador):
         lista.append(self._NombreUsuario)
         lista.append(self._Contrasena)
         return lista
-    
+   
+    def tomar_foto(self,x,y):
+        pantalla_total=pg.size()
+        a, b = panatlla_total
+        ancho = a-x
+        largo = b-y
+        Pc.screenshot(x-(ancho/2),y-(largo/2l),ancho,largo)
 
     def test_pagina(self):
         pass
