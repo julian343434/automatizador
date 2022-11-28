@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
 (async()=>{
     
     //valores por default
-    puede_consultar ='body > div > div > div.col-md-4.width100.heigth100.rigthLogin > div > div > div > section > table > tbody > tr:nth-child(2) > td > center:nth-child(4) > strong > a';
+    puede_consultar ='body > div > div > div.col-md-4.width100.heigth100.rigthLogin > div > div > div > section > form > table > tbody > tr:nth-child(9) > td > center > strong > a';
     no_hay_cupos='body > div > div > div.col-md-4.width100.heigth100.rigthLogin > div > div > div > section > form > table > tbody > tr:nth-child(9) > td > span'
     registrar='body > div > div > div.col-md-4.width100.heigth100.rigthLogin > div > div > div > section > form > table > tbody > tr:nth-child(7) > td > input[type=submit]'
     //ABRE LOS NAVEGADORES
@@ -13,6 +13,7 @@ const puppeteer = require('puppeteer');
     const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
     link1=false;
+
     //daikiry
     const browser2 = await puppeteer.launch({headless: true});
     const page2 = await browser2.newPage();
@@ -26,31 +27,49 @@ const puppeteer = require('puppeteer');
             //BOTON REGISTRAR
             //deivid
             consulta=await page.$(no_hay_cupos);
-            if (consulta ==null){    
-                await page.click(registrar)  
-                console.log("ingreso al boton1");
+            verificacion_inicial=await page.$(puede_consultar);
+
+            console.log("colsuta ="+consulta+" verfificacion ="+verificacion_inicial);
+
+            if (verificacion_inicial==null){
+                await page.click(registrar);
             }else{
-                link1=true;
-            }    
+                if (consulta ==null){
+                    await page.waitForSelector(registrar);    
+                    await page.click(registrar)  
+                    console.log("ingreso al boton1");
+                }else{
+                    link1=true;
+                }    
+            }
         }catch(e){
             console.log("fallo al registrar usuario 1");
             await page.reload();
+            console.log("recargo la pagina 1")
         }
         
         
         try{
             //BOTON REGISTRAR
             //daikiry
-            if (consulta==null){
-                consulta=await page2.$(no_hay_cupos);
-                await page2.click(registrar)  
-                console.log("ingreso al boton2");    
+            consulta=await page2.$(no_hay_cupos);
+            verificacion_inicial=await page2.$(puede_consultar)
+
+            if (verificacion_inicial==null){
+                await page2.click(registrar);
             }else{
-                link2=true;
+                if (consulta ==null){
+                    await page2.waitForSelector(registrar);    
+                    await page2.click(registrar)  
+                    console.log("ingreso al boton1");
+                }else{
+                    link2=true;
+                }    
             }
         }catch(e){
             console.log("fallo al registrar usuario 2");
             await page2.reload();
+            console.log("recargo la pagina 2")
         }    
         
 
